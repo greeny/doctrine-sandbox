@@ -1,0 +1,14 @@
+# IDEs
+.idea
+
+# general
+!.gitignore
+!.gitkeep
+!.htaccess
+
+# app
+log/*
+temp/*
+vendor/*
+
+app/config/config.local.neon

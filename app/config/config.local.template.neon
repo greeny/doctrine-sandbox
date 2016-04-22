@@ -1,0 +1,5 @@
+parameters:
+
+doctrine:
+    user: root
+    password:
