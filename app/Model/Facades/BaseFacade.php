@@ -1,51 +1,26 @@
-<?php
-/**
- * @author Tomáš Blatný
- */
+<?php declare(strict_types = 1);
 
 namespace REPLACE_namespace\Model\Facades;
 
 use Kdyby\Doctrine\EntityManager;
 use Kdyby\Doctrine\EntityRepository;
-use REPLACE_namespace\Model\MappingException;
 
-
-class BaseFacade
+abstract class BaseFacade
 {
 
 	/** @var EntityManager */
 	protected $entityManager;
-
-	/** @var string */
-	protected $entityNamespace = '\\REPLACE_namespace\\Model\\Entities\\';
-
 
 	public function __construct(EntityManager $entityManager)
 	{
 		$this->entityManager = $entityManager;
 	}
 
-
-	/**
-	 * @return string
-	 * @throws MappingException
-	 */
-	protected function getEntityClass()
-	{
-		if (preg_match('#([a-z0-9]+)facade$#i', $class = get_called_class(), $matches = [])) {
-			return $this->entityNamespace . $matches[1];
-		}
-		throw MappingException::cannotDetermineRepositoryName($class);
-	}
-
-
-	/**
-	 * @return EntityRepository
-	 */
-	protected function getRepository()
+	protected function getRepository(): EntityRepository
 	{
 		return $this->entityManager->getRepository($this->getEntityClass());
 	}
 
+	abstract protected function getEntityClass(): string;
 
 }

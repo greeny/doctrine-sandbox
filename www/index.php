@@ -1,6 +1,11 @@
-<?php
+<?php declare(strict_types = 1);
 
 use Nette\Application\Application;
+use REPLACE_namespace\Bootstrap;
 
-$container = require __DIR__ . '/../app/bootstrap.php';
-$container->getByType(Application::class)->run();
+require __DIR__ . '/../vendor/autoload.php';
+
+Bootstrap::boot()
+	->createContainer()
+	->getByType(Application::class)
+	->run();

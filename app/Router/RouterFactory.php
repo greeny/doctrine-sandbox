@@ -1,20 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
-namespace REPLACE_namespace\Routing;
+namespace REPLACE_namespace\Router;
 
-
-use Nette\Application\IRouter;
 use Nette\Application\Routers\Route;
 use Nette\Application\Routers\RouteList;
-
 
 class RouterFactory
 {
 
-	/**
-	 * @return IRouter
-	 */
-	public static function createRouter()
+	public static function createRouter(): RouteList
 	{
 		$router = new RouteList();
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'Public:Dashboard:default');

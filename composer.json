@@ -10,21 +10,31 @@
 		}
 	],
 	"require": {
-		"php": ">= 5.6",
-		"nette/application": "~2.3.6",
-		"nette/bootstrap": "~2.3.0",
-		"nette/caching": "~2.3.0",
-		"nette/di": "~2.3.0",
-		"nette/finder": "~2.3.0",
-		"nette/forms": "~2.3.0",
-		"nette/http": "~2.3.0",
-		"nette/mail": "~2.3.0",
-		"nette/robot-loader": "~2.3.0",
-		"nette/safe-stream": "~2.3.0",
-		"nette/security": "~2.3.0",
-		"nette/utils": "~2.3.0",
-		"latte/latte": "~2.3.0",
-		"tracy/tracy": "~2.3.0",
-		"kdyby/doctrine": "^3.1"
+		"php": ">= 7.2",
+		"nette/application": "3.0.5",
+		"nette/bootstrap": "3.0.2",
+		"nette/caching": "3.0.1",
+		"nette/di": "3.0.4",
+		"nette/finder": "2.5.2",
+		"nette/forms": "3.0.6",
+		"nette/http": "3.0.4",
+		"nette/mail": "3.1.4",
+		"nette/robot-loader": "3.3.0",
+		"nette/security": "3.0.4",
+		"nette/utils": "3.1.3",
+		"latte/latte": "2.8.1",
+		"tracy/tracy": "2.7.5",
+		"kdyby/doctrine": "dev-master#54479b1 as 3.1.1",
+		"kdyby/events": "^3.2@dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"REPLACE_namespace\\": "app"
+		}
+	},
+	"minimum-stability": "dev",
+	"config": {
+		"sort-packages": true,
+		"optimize-autoloader": true
 	}
 }

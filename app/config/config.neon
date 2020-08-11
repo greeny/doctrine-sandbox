@@ -1,10 +1,3 @@
-#
-# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
-# https://nette.org/security-warning
-#
-parameters:
-
-
 php:
 	date.timezone: Europe/Prague
 
@@ -12,14 +5,14 @@ php:
 application:
 	errorPresenter: Error
 	mapping:
-		*: REPLACE_namespace\*Module\*Presenter
+		*: REPLACE_namespace\Modules\*Module\*Presenter
 
 doctrine:
     user: root
     password:
     dbname: REPLACE_dbname
     metadata:
-        REPLACE_namespace: %appDir%/model/Entities
+        REPLACE_namespace: %appDir%/Model/Entities
 
 extensions:
 	annotations: Kdyby\Annotations\DI\AnnotationsExtension
@@ -28,8 +21,7 @@ extensions:
 	events: Kdyby\Events\DI\EventsExtension
 
 session:
-	expiration: 14 days
-
+	expiration: 30 days
 
 services:
-	router: REPLACE_namepsace\Routing\RouterFactory::createRouter
+	router: REPLACE_namespace\Router\RouterFactory::createRouter
