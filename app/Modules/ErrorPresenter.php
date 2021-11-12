@@ -5,8 +5,8 @@ namespace REPLACE_namespace\Modules;
 use Nette\Application\BadRequestException;
 use Nette\Application\Helpers;
 use Nette\Application\IPresenter;
-use Nette\Application\IResponse;
 use Nette\Application\Request;
+use Nette\Application\Response;
 use Nette\Application\Responses\CallbackResponse;
 use Nette\Application\Responses\ForwardResponse;
 use Nette\Http\IRequest as HttpRequest;
@@ -16,15 +16,14 @@ use Tracy\ILogger;
 class ErrorPresenter implements IPresenter
 {
 
-	/** @var ILogger */
-	private $logger;
+	private ILogger $logger;
 
 	public function __construct(ILogger $logger)
 	{
 		$this->logger = $logger;
 	}
 
-	public function run(Request $request): IResponse
+	public function run(Request $request): Response
 	{
 		$exception = $request->getParameter('exception');
 

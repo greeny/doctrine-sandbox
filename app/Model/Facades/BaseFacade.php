@@ -8,8 +8,7 @@ use Kdyby\Doctrine\EntityRepository;
 abstract class BaseFacade
 {
 
-	/** @var EntityManager */
-	protected $entityManager;
+	protected EntityManager $entityManager;
 
 	public function __construct(EntityManager $entityManager)
 	{

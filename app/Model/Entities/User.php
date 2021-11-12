@@ -14,21 +14,18 @@ class User
 	use Identifier;
 
 	/**
-	 * @var string
 	 * @ORM\Column(type="string", nullable=FALSE)
 	 */
-	private $nick;
+	private string $nick;
 
 	/**
-	 * @var string
 	 * @ORM\Column(type="string", nullable=FALSE)
 	 */
-	private $password;
+	private string $password;
 
 	/**
-	 * @var string
 	 * @ORM\Column(type="string", nullable=FALSE)
 	 */
-	private $email;
+	private string $email;
 
 }
