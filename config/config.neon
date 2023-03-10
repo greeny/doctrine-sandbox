@@ -1,0 +1,60 @@
+php:
+	date.timezone: Europe/Prague
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: REPLACE_namespace\Modules\*Module\*Presenter
+
+nettrine.dbal:
+	debug:
+		panel: %debugMode%
+	connection:
+		driver: mysqli
+		user: root
+		password:
+		dbname: REPLACE_dbname
+
+nettrine.orm.attributes:
+	mapping:
+		greeny\REPLACE_namespace: %appDir%/Model/Entities
+
+nettrine.orm:
+	configuration:
+		autoGenerateProxyClasses: %debugMode%
+
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+	nettrine.cache: Nettrine\Cache\DI\CacheExtension
+	nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
+	nettrine.orm: Nettrine\ORM\DI\OrmExtension
+	nettrine.orm.attributes: Nettrine\ORM\DI\OrmAttributesExtension
+	nettrine.orm.cache: Nettrine\ORM\DI\OrmCacheExtension
+	nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension(%consoleMode%)
+
+search:
+	model:
+		in: %appDir%/Model
+		classes:
+			- *Repository
+			- *Facade
+#	forms:
+#		in: %appDir%/UI/Forms
+#		classes:
+#			- *FormFactory
+#	components:
+#		in: %appDir%/UI/Components
+#		classes:
+#			- *ControlFactory
+
+session:
+	expiration: 30 days
+
+services:
+	latte.latteFactory:
+		setup:
+			- addFilterLoader(REPLACE_namespace\UI\TemplateFilters::loader)
+
+	router: REPLACE_namespace\Router\RouterFactory::createRouter

@@ -16,11 +16,8 @@ use Tracy\ILogger;
 class ErrorPresenter implements IPresenter
 {
 
-	private ILogger $logger;
-
-	public function __construct(ILogger $logger)
+	public function __construct(private readonly ILogger $logger)
 	{
-		$this->logger = $logger;
 	}
 
 	public function run(Request $request): Response

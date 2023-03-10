@@ -11,7 +11,7 @@ class Error4xxPresenter extends BasePresenter
 	public function startup(): void
 	{
 		parent::startup();
-		if (!$this->getRequest()->isMethod(Request::FORWARD)) {
+		if ($this->getRequest() && !$this->getRequest()->isMethod(Request::FORWARD)) {
 			$this->error();
 		}
 	}

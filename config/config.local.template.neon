@@ -1,0 +1,4 @@
+nettrine.dbal:
+	connection:
+		user: root
+		password:

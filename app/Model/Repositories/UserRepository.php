@@ -1,10 +1,10 @@
 <?php declare(strict_types = 1);
 
-namespace REPLACE_namespace\Model\Facades;
+namespace REPLACE_namespace\Model\Repositories;
 
 use REPLACE_namespace\Model\Entities\User;
 
-class UserFacade extends BaseFacade
+class UserRepository extends BaseRepository
 {
 
 	public function getById(int $id): ?User
