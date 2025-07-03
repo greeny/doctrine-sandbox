@@ -3,28 +3,42 @@
 namespace REPLACE_namespace;
 
 use Nette\Bootstrap\Configurator;
+use Nette\DI\Container;
 
 class Bootstrap
 {
 
-	public static function boot(): Configurator
+	private Configurator $configurator;
+	private string $rootDir;
+
+	public function __construct()
 	{
-		$appDir = dirname(__DIR__);
+		$this->rootDir = dirname(__DIR__);
+		$this->configurator = new Configurator;
+		$this->configurator->setTempDirectory($this->rootDir . '/temp');
+	}
 
-		$configurator = new Configurator;
+	public function bootWebApplication(): Container
+	{
+		$this->initializeEnvironment();
+		$this->setupContainer();
+		return $this->configurator->createContainer();
+	}
 
-		$configurator->enableTracy($appDir . '/log');
-		$configurator->setTimeZone('Europe/Prague');
-		$configurator->setTempDirectory($appDir . '/temp');
+	private function initializeEnvironment(): void
+	{
+		$this->configurator->enableTracy($this->rootDir . '/log');
 
-		$configurator->createRobotLoader()
+		$this->configurator->createRobotLoader()
 			->addDirectory(__DIR__)
 			->register();
+	}
 
-		$configurator->addConfig($appDir . '/config/config.neon');
-		$configurator->addConfig($appDir . '/config/config.local.neon');
-
-		return $configurator;
+	private function setupContainer(): void
+	{
+		$configDir = $this->rootDir . '/config';
+		$this->configurator->addConfig($configDir . '/config.neon');
+		$this->configurator->addConfig($configDir . '/config.local.neon');
 	}
 
 }

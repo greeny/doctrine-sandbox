@@ -1,11 +1,33 @@
 php:
 	date.timezone: Europe/Prague
 
-
 application:
-	errorPresenter: Error
+	errorPresenter:
+		4xx: Error:Error4xx
+		5xx: Error:Error5xx
 	mapping:
 		*: REPLACE_namespace\Modules\*Module\*Presenter
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
+	nettrine.cache: Nettrine\Cache\DI\CacheExtension
+	nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
+	nettrine.orm: Nettrine\ORM\DI\OrmExtension
+	nettrine.orm.attributes: Nettrine\ORM\DI\OrmAttributesExtension
+	nettrine.orm.cache: Nettrine\ORM\DI\OrmCacheExtension
+	nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension(%consoleMode%)
+
+latte:
+	strictTypes: yes
+	strictParsing: yes
+	extensions:
+		- REPLACE_namespace\UI\LatteExtension
 
 nettrine.dbal:
 	debug:
@@ -23,16 +45,6 @@ nettrine.orm.attributes:
 nettrine.orm:
 	configuration:
 		autoGenerateProxyClasses: %debugMode%
-
-extensions:
-	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
-	nettrine.annotations: Nettrine\Annotations\DI\AnnotationsExtension
-	nettrine.cache: Nettrine\Cache\DI\CacheExtension
-	nettrine.dbal: Nettrine\DBAL\DI\DbalExtension
-	nettrine.orm: Nettrine\ORM\DI\OrmExtension
-	nettrine.orm.attributes: Nettrine\ORM\DI\OrmAttributesExtension
-	nettrine.orm.cache: Nettrine\ORM\DI\OrmCacheExtension
-	nettrine.orm.console: Nettrine\ORM\DI\OrmConsoleExtension(%consoleMode%)
 
 search:
 	model:
@@ -53,8 +65,4 @@ session:
 	expiration: 30 days
 
 services:
-	latte.latteFactory:
-		setup:
-			- addFilterLoader(REPLACE_namespace\UI\TemplateFilters::loader)
-
 	router: REPLACE_namespace\Router\RouterFactory::createRouter
